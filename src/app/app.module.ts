@@ -23,7 +23,6 @@ import { MatToolbarModule,
   MatTableModule, 
   MatDividerModule, 
   MatSnackBarModule } from '@angular/material';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   { path: 'create', component: CreateComponent },
@@ -57,8 +56,7 @@ const routes: Routes = [
     MatSnackBarModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpModule,
-    NgbModule.forRoot(),
+    HttpModule
     
    ],
   providers: [TicketService, WebsocketService],
