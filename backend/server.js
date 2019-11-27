@@ -1,0 +1,72 @@
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import Tickets from './models/Tickets';
+
+const socket = require('socket.io');
+
+const app = express();
+const router = express.Router();
+app.use(cors());
+app.use(bodyParser.json());
+mongoose.connect('mongodb://localhost/tickets');
+const connection = mongoose.connection;
+connection.once('open', () => {
+    console.log('MongoDB database connection established successfully!');
+});
+
+
+
+router.route('/tickets').get((req, res) => {
+    Tickets.find((err, tickets) => {
+        if (err)
+            console.log(err);
+        else
+            res.json(tickets);
+    });
+});
+router.route('/tickets/:id').get((req, res) => {
+    Tickets.findById(req.params.id, (err, tickets) => {
+        if (err)
+            console.log(err);
+        else
+            res.json(tickets);
+    })
+});
+
+router.route('/tickets/add').post((req, res) => {
+    let tickets = new Tickets(req.body);
+    tickets.save()
+        .then(tickets => {
+            res.status(200).json({'tickets': 'Added successfully'});
+        })
+        .catch(err => {
+            res.status(400).send('Failed to create new record');
+        });
+});
+
+app.use('/', router);
+const server = app.listen(4000, () => {
+    console.log("Server started on port " + 4000 + "...");
+});
+const io = socket.listen(server);
+io.sockets.on('connection', (socket) => {
+    console.log('a user connected');
+    
+    
+    socket.on('newTicket', (data) => {
+        let tickets = new Tickets(data);
+        tickets.save()
+        .then(tickets => {
+            console.log(tickets);
+            io.emit('new ticket', tickets);
+
+        })
+        .catch(err => {
+            console.log(err);
+        });
+      
+    });
+})
+

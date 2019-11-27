@@ -1,0 +1,25 @@
+<div>
+    <br>
+    <mat-card>
+      <section class="mat-typography">
+        <h3>Create A New Ticket</h3>
+      </section>
+      <mat-divider></mat-divider>
+      <br>
+      <form [formGroup]="createForm" class="create-form">
+        <mat-form-field class="field-full-width">
+          <input matInput placeholder="Ticket Title" formControlName="title" #title>
+          <!--<mat-error *ngIf="createForm.controls['title'].errors.required">
+            Title is <strong>required</strong>
+          </mat-error>-->
+        </mat-form-field>
+        <mat-form-field class="field-full-width">
+          <textarea matInput placeholder="Description" formControlName="description" #description></textarea>
+        </mat-form-field>
+        <mat-divider></mat-divider>
+        <br><br>
+        <button mat-raised-button color="accent" routerLink="/list">Back</button>&nbsp;
+        <button type="submit" (click)="addTicket(title.value, description.value)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary">Save</button>
+      </form>
+    </mat-card>
+  </div>

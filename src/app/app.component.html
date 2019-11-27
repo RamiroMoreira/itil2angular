@@ -1,0 +1,31 @@
+
+
+<div class="wrapper">
+
+  <!-- Sidebar -->
+  <nav id="sidebar">
+      <ul class="list-unstyled">
+        <img src="assets/img/logo-itil.png" style="width:100%">  
+        <li class="active">
+              <a  class="dropdown-toggle" (click)="isCollapsed = !isCollapsed"
+              [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample"> Tickets</a>
+              <ul id="collapseExample" class="noPadding" [ngbCollapse]="isCollapsed">
+                  <li>
+                      <a routerLink="/list">List</a>
+                  </li>
+                  <li>
+                      <a routerLink="/create">Add ticket</a>
+                  </li>
+              </ul>
+          </li>
+       </ul>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="content" style="width:100%" role="main">
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</div>      
