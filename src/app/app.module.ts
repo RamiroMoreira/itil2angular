@@ -11,6 +11,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TicketService } from './ticket.service';
 import { HttpClientModule } from '@angular/common/http'; 
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 import { WebsocketService} from './webSocket.service';
 import { MatToolbarModule, 
   MatFormFieldModule, 
@@ -23,6 +24,7 @@ import { MatToolbarModule,
   MatTableModule, 
   MatDividerModule, 
   MatSnackBarModule } from '@angular/material';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   { path: 'create', component: CreateComponent },
@@ -56,7 +58,9 @@ const routes: Routes = [
     MatSnackBarModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    FormsModule,
+    NgbModule
     
    ],
   providers: [TicketService, WebsocketService],
