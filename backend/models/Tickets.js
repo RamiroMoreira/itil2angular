@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 let Tickets = new Schema({
     title: {
@@ -8,4 +8,4 @@ let Tickets = new Schema({
         type: String
     }
 });
-export default mongoose.model('Tickets', Tickets);
+module.exports =  mongoose.model('Tickets', Tickets);

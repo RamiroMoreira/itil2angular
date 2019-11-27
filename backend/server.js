@@ -1,8 +1,14 @@
-import express from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
-import Tickets from './models/Tickets';
+const express = require('express')
+const cors = require('cors')
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const Tickets = require('./models/Tickets');
+
+// import express from 'express';
+// import cors from 'cors';
+// import bodyParser from 'body-parser';
+// import mongoose from 'mongoose';
+// import Tickets from './models/Tickets';
 
 const socket = require('socket.io');
 
