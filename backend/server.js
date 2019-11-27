@@ -16,7 +16,9 @@ const app = express();
 const router = express.Router();
 app.use(cors());
 app.use(bodyParser.json());
-mongoose.connect('mongodb://localhost/tickets');
+if(process.env.MONGOURL ){
+    mongoose.connect(process.env.MONGOURL);
+}
 const connection = mongoose.connection;
 connection.once('open', () => {
     console.log('MongoDB database connection established successfully!');
