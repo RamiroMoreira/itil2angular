@@ -3,6 +3,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Tickets = require('./models/Tickets');
+const path = require('path');
 
 // import express from 'express';
 // import cors from 'cors';
@@ -25,7 +26,7 @@ const dist = 'dist';
 
 app.all('*', function (req, res) {
     const fullPath = path.join(__dirname + '/dist/src/index.html');
-    res.status(200).sendFile(`/`, { root: dist });
+    res.status(200).sendFile(`/`, { root: fullPath });
 });
 
 if(process.env.MONGOURL ){
