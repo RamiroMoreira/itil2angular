@@ -62,7 +62,6 @@ router.route('/tickets/add').post((req, res) => {
         });
 });
 
-app.use('/', router);
 const server = app.listen(process.env.PORT || 4000, () => {
     if(process.env.PORT ){
         console.log("Server started on port " + process.env.PORT  + "...");
