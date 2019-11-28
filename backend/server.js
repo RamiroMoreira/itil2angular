@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 
 // Create link to Angular build directory
-app.use(express.static(__dirname + '../dist'));
+app.use(express.static(__dirname + 'dist'));
 
 if(process.env.MONGOURL ){
     mongoose.connect(process.env.MONGOURL,{ useNewUrlParser: true, useUnifiedTopology: true  });
