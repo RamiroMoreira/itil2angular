@@ -16,6 +16,12 @@ const app = express();
 const router = express.Router();
 app.use(cors());
 app.use(bodyParser.json());
+
+
+// Create link to Angular build directory
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
+
 if(process.env.MONGOURL ){
     mongoose.connect(process.env.MONGOURL);
 }
@@ -79,4 +85,3 @@ io.sockets.on('connection', (socket) => {
       
     });
 })
-
