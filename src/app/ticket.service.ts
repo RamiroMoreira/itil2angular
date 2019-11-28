@@ -9,7 +9,7 @@ import { HttpModule, Headers, Http } from '@angular/http';
   providedIn: 'root'
 })
 export class TicketService implements OnInit {
-  uri = '';
+  uri = 'http://localhost:4000';
 
   constructor(
     private http: Http,

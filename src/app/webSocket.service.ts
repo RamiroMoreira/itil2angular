@@ -7,7 +7,7 @@ import { environment } from '../environments/environment';
 @Injectable()
 export class WebsocketService {
 
-  private socket = io('');
+  private socket = io('http://localhost:4000');
   constructor() { }
 
 //   joinRoom(data) {
