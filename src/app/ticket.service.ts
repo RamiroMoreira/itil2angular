@@ -9,7 +9,7 @@ import { HttpModule, Headers, Http } from '@angular/http';
   providedIn: 'root'
 })
 export class TicketService implements OnInit {
-  uri = 'https://itil2angular.herokuapp.com/';
+  uri = '';
 
   constructor(
     private http: Http,
