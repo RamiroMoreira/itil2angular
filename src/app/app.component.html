@@ -5,7 +5,7 @@
   <!-- Sidebar -->
   <nav id="sidebar">
       <ul class="list-unstyled">
-        <img src="assets/img/logo-itil.png" style="width:100%">  
+        <img src="assets/img/logo-itil.png" class="width100">  
         <li class="active">
               <a  class="dropdown-toggle" (click)="isCollapsed = !isCollapsed"
               [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample"> Tickets</a>
@@ -22,7 +22,7 @@
   </nav>
 
   <!-- Page Content -->
-  <div class="content" style="width:100%" role="main">
+  <div class="content width100"  role="main">
     <div>
       <router-outlet></router-outlet>
     </div>

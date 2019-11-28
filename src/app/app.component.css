@@ -110,3 +110,7 @@ ul ul a {
   .noPadding {
       padding: 0px;
   }
+
+  .width100 {
+      width:100%;
+  }
