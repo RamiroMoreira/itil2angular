@@ -25,7 +25,7 @@ app.use(express.static(__dirname + '../dist/src'));
 const dist = 'dist';
 
 app.all('*', function (req, res) {
-    const fullPath = path.join(__dirname + '../dist/src/index.html');
+    const fullPath = path.join(__dirname + '/../dist/src/index.html');
     res.status(200).sendFile(`/`, { root: fullPath });
 });
 
