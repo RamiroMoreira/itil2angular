@@ -68,6 +68,13 @@ const server = app.listen(process.env.PORT || 4000, () => {
         console.log("Server started on port " + process.env.PORT  + "...");
     }
 });
+const dist = 'dist';
+
+// Serve application paths
+app.all('*', function (req, res) {
+    res.status(200).sendFile(`/`, { root: dist });
+  });
+
 const io = socket.listen(server);
 io.sockets.on('connection', (socket) => {
     console.log('a user connected');
