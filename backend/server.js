@@ -20,12 +20,12 @@ app.use(bodyParser.json());
 
 
 // Create link to Angular build directory
-app.use(express.static(__dirname + '../dist/src'));
+app.use(express.static(__dirname + '/../dist/frontend'));
 // Serve application paths
 const dist = 'dist';
 
 app.all('*', function (req, res) {
-    const fullPath = path.join(__dirname + '/../dist/src/index.html');
+    const fullPath = path.join(__dirname + '/../frontend/index.html');
     res.status(200).sendFile(`/`, { root: fullPath });
 });
 
