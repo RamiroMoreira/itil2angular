@@ -23,12 +23,14 @@ export class TicketService implements OnInit {
 
   }
   getTickets() {
+    console.log("getting tickets");
     return this.http.get(`${this.uri}/tickets`);
   }
   getTicketById(id) {
     return this.http.get(`${this.uri}/tickets/${id}`);
   }
   addTicket(title, description) {
+      console.log("new ticket");
       this.webSocketService.newTicket({title: title, description: description});
   }
 }
