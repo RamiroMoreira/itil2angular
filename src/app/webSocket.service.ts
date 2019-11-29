@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../environments/environment';
-
+import {ConfigService } from './config.service';
 @Injectable()
 export class WebsocketService {
 
   // private socket = io('https://itil2angular.herokuapp.com');
-  private socket = io('/');
+  private socket = io(ConfigService.serverUrl);
   constructor() { }
 
 //   joinRoom(data) {

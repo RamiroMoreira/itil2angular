@@ -13,7 +13,9 @@ import { WebsocketService } from './../../webSocket.service';
 export class ListComponent implements OnInit {
   tickets: Ticket[];
   displayedColumns = ['title', 'description'];
-
+  page = 1;
+  pageSize = 10;
+  collectionSize = 0;
   constructor(
     private ticketService: TicketService, 
     private router: Router,
@@ -24,6 +26,7 @@ export class ListComponent implements OnInit {
       }
       else{
         this.tickets.push(data);
+        this.collectionSize = this.collectionSize+1;
       }
       
     });
@@ -33,10 +36,14 @@ export class ListComponent implements OnInit {
     
     this.ticketService.getTickets().subscribe(tickets => {
       this.tickets = tickets.json();
+      this.collectionSize = this.tickets.length;
     });
   }
 
-  // fetchTickets() {
+  get tickets2(): Ticket[] {
+      return this.tickets.slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+    }
+    // fetchTickets() {
   //   this.ticketService
   //   .getTickets()
   //   .subscribe((tickets: Ticket[]) => {

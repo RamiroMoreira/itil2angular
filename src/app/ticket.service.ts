@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { WebsocketService } from './webSocket.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpModule, Headers, Http } from '@angular/http';
+import {ConfigService } from './config.service';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { HttpModule, Headers, Http } from '@angular/http';
 })
 export class TicketService implements OnInit {
   // uri = 'https://itil2angular.herokuapp.com';
-  uri = ''
+  uri = ConfigService.serverUrl
   constructor(
     private http: Http,
     private route: ActivatedRoute,
