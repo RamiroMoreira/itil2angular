@@ -75,6 +75,7 @@ router.route('/tickets/add').post((req, res) => {
 app.all('*', function (req, res) {
     
     const fullPath = path.join(__dirname + '/../dist/frontend/index.html');
+    console.log("la ruta es: "+fullPath);
     res.status(200).sendFile(`/`, { root: fullPath });
 });
 
