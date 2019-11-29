@@ -17,6 +17,7 @@ const app = express();
 const router = express.Router();
 app.use(cors());
 app.use(bodyParser.json());
+app.use('/', router);
 
 
 // Create link to Angular build directory
@@ -24,10 +25,7 @@ app.use(express.static(__dirname + '/../dist/frontend'));
 // Serve application paths
 const dist = 'dist';
 
-app.all('*', function (req, res) {
-    const fullPath = path.join(__dirname + '/../dist/frontend/index.html');
-    res.status(200).sendFile(`/`, { root: fullPath });
-});
+
 
 if(process.env.MONGOURL ){
     mongoose.connect(process.env.MONGOURL,{ useNewUrlParser: true, useUnifiedTopology: true  });
@@ -74,7 +72,12 @@ router.route('/tickets/add').post((req, res) => {
         });
 });
 
-app.use('/', router);
+app.all('*', function (req, res) {
+    
+    const fullPath = path.join(__dirname + '/../dist/frontend/index.html');
+    res.status(200).sendFile(`/`, { root: fullPath });
+});
+
 const server = app.listen(process.env.PORT || 4000, () => {
     if(process.env.PORT ){
         console.log("Server started on port " + process.env.PORT  + "...");
