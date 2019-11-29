@@ -25,7 +25,7 @@ app.use(express.static(__dirname + '/../dist/frontend'));
 const dist = 'dist';
 
 app.all('*', function (req, res) {
-    const fullPath = path.join(__dirname + '/../frontend/index.html');
+    const fullPath = path.join(__dirname + '/../dist/frontend/index.html');
     res.status(200).sendFile(`/`, { root: fullPath });
 });
 
@@ -43,6 +43,7 @@ connection.once('open', () => {
 
 
 router.route('/tickets').get((req, res) => {
+    console.log("Listing tickets");
     Tickets.find((err, tickets) => {
         if (err)
             console.log(err);
@@ -60,12 +61,15 @@ router.route('/tickets/:id').get((req, res) => {
 });
 
 router.route('/tickets/add').post((req, res) => {
+    console.log("Adding ticket");
     let tickets = new Tickets(req.body);
     tickets.save()
         .then(tickets => {
+            console.log("Ticket added");
             res.status(200).json({'tickets': 'Added successfully'});
         })
         .catch(err => {
+            console.log("Ticket error"+err);
             res.status(400).send('Failed to create new record');
         });
 });
