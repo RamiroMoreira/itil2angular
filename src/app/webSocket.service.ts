@@ -7,7 +7,8 @@ import { environment } from '../environments/environment';
 @Injectable()
 export class WebsocketService {
 
-  private socket = io('https://itil2angular.herokuapp.com');
+  // private socket = io('https://itil2angular.herokuapp.com');
+  private socket = io('/');
   constructor() { }
 
 //   joinRoom(data) {
