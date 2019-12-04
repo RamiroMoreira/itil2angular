@@ -34,6 +34,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/list', pathMatch: 'full'}
 ];
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,7 @@ const routes: Routes = [
     BrowserModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes,{useHash: true}),
     MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
