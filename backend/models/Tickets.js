@@ -6,6 +6,14 @@ let Tickets = new Schema({
     },
     description: {
         type: String
+    },
+    fechaIngreso: {
+        type: Date
     }
 });
+Tickets.pre('save',function (next) {
+    var self = this;
+    self.fechaIngreso = new Date();
+    next();
+}) ;
 module.exports =  mongoose.model('Tickets', Tickets);
