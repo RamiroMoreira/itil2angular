@@ -21,6 +21,7 @@ export class ListComponent implements OnInit {
     private router: Router,
     private webSocketService: WebsocketService
     ) { 
+
     this.webSocketService.newTicketCreated().subscribe(data => {
       if(!this.tickets){
       }
@@ -41,8 +42,13 @@ export class ListComponent implements OnInit {
   }
 
   get tickets2(): Ticket[] {
+    if(this.tickets){
       return this.tickets.slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
     }
+    else{
+      return [];
+    }
+  }  
     // fetchTickets() {
   //   this.ticketService
   //   .getTickets()

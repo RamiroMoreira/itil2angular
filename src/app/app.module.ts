@@ -25,6 +25,7 @@ import { MatToolbarModule,
   MatDividerModule, 
   MatSnackBarModule } from '@angular/material';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConfigService } from './config.service';
 
 const routes: Routes = [
   { path: 'create', component: CreateComponent },
@@ -63,9 +64,13 @@ const routes: Routes = [
     NgbModule
     
    ],
-  providers: [TicketService, WebsocketService],
+  providers: [TicketService, WebsocketService, ConfigService],
   bootstrap: [AppComponent]
 })
 
 
-export class AppModule { }
+export class AppModule {
+  constructor(){
+    ConfigService.initializeUrl();
+  }
+}
