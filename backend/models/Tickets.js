@@ -9,6 +9,11 @@ let Tickets = new Schema({
     },
     fechaIngreso: {
         type: Date
+    },
+    tipoTicket: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'TipoTickets',
+        required:true
     }
 });
 Tickets.pre('save',function (next) {

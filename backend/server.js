@@ -3,6 +3,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Tickets = require('./models/Tickets');
+const TipoTicket = require('./models/TipoTicket');
 const path = require('path');
 
 // import express from 'express';
@@ -42,7 +43,7 @@ connection.once('open', () => {
 
 router.route('/tickets').get((req, res) => {
     console.log("Listing tickets");
-    Tickets.find((err, tickets) => {
+    Tickets.find().populate('tipoTicket').sort({fechaIngreso: -1}).exec((err, tickets) => {
         if (err)
             console.log(err);
         else
@@ -72,6 +73,17 @@ router.route('/tickets/add').post((req, res) => {
         });
 });
 
+router.route('/tipoTickets').get((req, res) => {
+    TipoTicket.find((err, tipo) => {
+        if (err){
+            console.log(err);
+        }
+        else{
+            res.json(tipo);
+        }
+            
+    });
+});
 app.all('*', function (req, res) {
     
     const fullPath = path.join(__dirname + '/../dist/frontend/index.html');
@@ -89,8 +101,6 @@ const server = app.listen(process.env.PORT || 4000, () => {
 const io = socket.listen(server);
 io.sockets.on('connection', (socket) => {
     console.log('a user connected');
-    
-    
     socket.on('newTicket', (data) => {
         let tickets = new Tickets(data);
         tickets.save()
@@ -102,6 +112,5 @@ io.sockets.on('connection', (socket) => {
         .catch(err => {
             console.log(err);
         });
-      
     });
 })
