@@ -9,8 +9,7 @@ import {ConfigService } from './config.service';
 @Injectable({
   providedIn: 'root'
 })
-export class TicketService implements OnInit {
-  // uri = 'https://itil2angular.herokuapp.com';
+export class TipoTicketService implements OnInit {
   uri = ConfigService.serverUrl
   constructor(
     private http: Http,
@@ -23,16 +22,9 @@ export class TicketService implements OnInit {
   ngOnInit() {
 
   }
-  getTickets() {
+  getTipoTickets() {
     console.log("getting tickets");
-    return this.http.get(`${this.uri}/tickets`);
-  }
-  getTicketById(id) {
-    return this.http.get(`${this.uri}/tickets/${id}`);
-  }
-  addTicket(title, description, tipoTicket) {
-      console.log("new ticket");
-      this.webSocketService.newTicket({title: title, description: description, tipoTicket: tipoTicket});
+    return this.http.get(`${this.uri}/tipoTickets`);
   }
 }
 

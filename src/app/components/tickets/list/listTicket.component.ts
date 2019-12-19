@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { TicketService } from '../../ticket.service';
+import { TicketService } from '../../../ticket.service';
 import { Router } from '@angular/router';
-import { Ticket } from '../../ticket.model';
+import { Ticket } from '../../../ticket.model';
 import { MatTableDataSource } from '@angular/material';
-import { WebsocketService } from './../../webSocket.service';
+import { WebsocketService } from './../../../webSocket.service';
+import * as _ from 'underscore';
 
 @Component({
   selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  templateUrl: './listTicket.component.html',
+  styleUrls: ['./listTicket.component.css']
 })
-export class ListComponent implements OnInit {
+export class ListTicketComponent implements OnInit {
   tickets: Ticket[];
-  displayedColumns = ['title', 'description'];
+  displayedColumns = ['title', 'description', 'fechaIngreso', 'tipoTicket'];
   page = 1;
   pageSize = 10;
   collectionSize = 0;
@@ -27,6 +28,7 @@ export class ListComponent implements OnInit {
       }
       else{
         this.tickets.push(data);
+        this.tickets = _.sortBy(this.tickets, 'fechaIngreso').reverse();
         this.collectionSize = this.collectionSize+1;
       }
       
@@ -38,6 +40,7 @@ export class ListComponent implements OnInit {
     this.ticketService.getTickets().subscribe(tickets => {
       this.tickets = tickets.json();
       this.collectionSize = this.tickets.length;
+      debugger;
     });
   }
 

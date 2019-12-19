@@ -21,7 +21,7 @@ export class WebsocketService {
   }
 
   newTicketCreated() {
-    const observable = new Observable<{id: String, title: String, description: String}>(observer => {
+    const observable = new Observable<{id: String, title: String, description: String, fechaIngreso: Date}>(observer => {
       this.socket.on('new ticket', (data) => {
         observer.next(data);
       });

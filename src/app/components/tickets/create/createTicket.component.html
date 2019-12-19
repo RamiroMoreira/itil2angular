@@ -16,10 +16,19 @@
         <mat-form-field class="field-full-width">
           <textarea matInput placeholder="Description" formControlName="description" #description></textarea>
         </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Tipo de ticket</mat-label>
+          <mat-select matNativeControl  formControlName="tipoTicket" #tipoTicket>
+            <mat-option *ngFor="let tipo of tipoTickets" [value]="tipo._id">
+              {{tipo.tipo}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
         <mat-divider></mat-divider>
         <br><br>
-        <button mat-raised-button color="accent" routerLink="/list">Back</button>&nbsp;
-        <button type="submit" (click)="addTicket(title.value, description.value)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary">Save</button>
+        <button mat-raised-button color="accent" routerLink="/listTicket">Back</button>&nbsp;
+        <button type="submit" (click)="addTicket(title.value, description.value, tipoTicket)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary">Save</button>
       </form>
     </mat-card>
   </div>

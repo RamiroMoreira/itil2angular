@@ -4,11 +4,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ListComponent } from './components/list/list.component';
-import { CreateComponent } from './components/create/create.component';
-import { EditComponent } from './components/edit/edit.component';
+import { ListTicketComponent } from './components/tickets/list/listTicket.component';
+import { CreateTicketComponent } from './components/tickets/create/createTicket.component';
+import { EditTicketComponent } from './components/tickets/edit/editTicket.component';
 import { RouterModule, Routes } from '@angular/router';
 import { TicketService } from './ticket.service';
+import { TipoTicketService } from './tipoTicket.service';
 import { HttpClientModule } from '@angular/common/http'; 
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
@@ -28,19 +29,19 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfigService } from './config.service';
 
 const routes: Routes = [
-  { path: 'create', component: CreateComponent },
-  { path: 'edit/:id', component: EditComponent },
-  { path: 'list', component: ListComponent },
-  { path: '', redirectTo: '/list', pathMatch: 'full'}
+  { path: 'createTicket', component: CreateTicketComponent },
+  { path: 'editTicket/:id', component: EditTicketComponent },
+  { path: 'listTicket', component: ListTicketComponent },
+  { path: '', redirectTo: '/listTicket', pathMatch: 'full'}
 ];
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListComponent,
-    CreateComponent,
-    EditComponent
+    ListTicketComponent,
+    CreateTicketComponent,
+    EditTicketComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +66,7 @@ const routes: Routes = [
     NgbModule
     
    ],
-  providers: [TicketService, WebsocketService, ConfigService],
+  providers: [TicketService, TipoTicketService, WebsocketService, ConfigService],
   bootstrap: [AppComponent]
 })
 

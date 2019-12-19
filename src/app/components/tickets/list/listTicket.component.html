@@ -5,8 +5,8 @@
     <th scope="col">#</th>
     <th scope="col">Title</th>
     <th scope="col">Description</th>
-    <th scope="col">Fecha</th>
-
+    <th scope="col">Fecha Ingreso</th>
+    <th scope="col">Tipo de ticket</th>
   </tr>
   </thead>
   <tbody>
@@ -17,6 +17,7 @@
     </td>
     <td>{{ ticket.description}}</td>
     <td>{{ ticket.fechaIngreso | date : format : timezone}}</td>
+    <td>{{ ticket.tipoTicket.tipo}}</td>
 
   </tr>
   </tbody>
