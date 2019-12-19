@@ -17,10 +17,11 @@ export class ListTicketComponent implements OnInit {
   page = 1;
   pageSize = 10;
   collectionSize = 0;
+  format: String
   constructor(
     private ticketService: TicketService, 
     private router: Router,
-    private webSocketService: WebsocketService
+    private webSocketService: WebsocketService,
     ) { 
 
     this.webSocketService.newTicketCreated().subscribe(data => {
