@@ -29,6 +29,9 @@ export class CreateTicketComponent implements OnInit {
   }
 
   addTicket(title, description, tipoTicket) {
+    console.log("tipoTickets: "+tipoTicket.selectedOptions);
+    console.log("tipoTickets2: "+this.createForm.controls['tipoTicket'].value);
+
     var tipoId = tipoTicket.selectedOptions[0].value;
     var tipo = this.tipoTickets.find(x => x._id == tipoId);
     this.webSocketService.newTicket({title: title, description: description, tipoTicket: tipo});
@@ -39,7 +42,7 @@ export class CreateTicketComponent implements OnInit {
     this.tipoTicketService.getTipoTickets().subscribe(tipoTickets => {
       this.tipoTickets = tipoTickets.json();
       if(this.tipoTickets.length > 0){
-        console.log("tipoTickets: "+this.tipoTickets);
+        console.log("tipoTickets: "+this.tipoTickets[0]);
         this.createForm.controls['tipoTicket'].setValue(this.tipoTickets[0]._id);
       }
     });
