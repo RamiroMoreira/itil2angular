@@ -17,7 +17,8 @@ export class ListTicketComponent implements OnInit {
   page = 1;
   pageSize = 10;
   collectionSize = 0;
-  format: string
+  format: string;
+  timezone: string;
   constructor(
     private ticketService: TicketService, 
     private router: Router,
