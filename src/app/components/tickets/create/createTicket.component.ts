@@ -29,10 +29,7 @@ export class CreateTicketComponent implements OnInit {
   }
 
   addTicket(title, description, tipoTicket) {
-    console.log("tipoTickets: "+tipoTicket.selectedOptions);
-    console.log("tipoTickets2: "+this.createForm.controls['tipoTicket'].value);
-
-    var tipoId = tipoTicket.selectedOptions[0].value;
+    var tipoId = this.createForm.controls['tipoTicket'].value;
     var tipo = this.tipoTickets.find(x => x._id == tipoId);
     this.webSocketService.newTicket({title: title, description: description, tipoTicket: tipo});
     this.router.navigate(['/listTicket']);
