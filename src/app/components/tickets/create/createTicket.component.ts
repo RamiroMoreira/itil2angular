@@ -37,9 +37,9 @@ export class CreateTicketComponent implements OnInit {
 
   ngOnInit() {
     this.tipoTicketService.getTipoTickets().subscribe(tipoTickets => {
-      console.log("tipoTickets: "+tipoTickets);
       this.tipoTickets = tipoTickets.json();
       if(this.tipoTickets.length > 0){
+        console.log("tipoTickets: "+this.tipoTickets);
         this.createForm.controls['tipoTicket'].setValue(this.tipoTickets[0]._id);
       }
     });
