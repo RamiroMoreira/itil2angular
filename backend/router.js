@@ -4,9 +4,9 @@ const TipoTicket = require('./models/TipoTicket');
 const Tickets = require('./models/Tickets');
 const cors = require('cors')
 const bodyParser = require('body-parser');
-
 const app = express();
 const router = express.Router();
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/', router);
