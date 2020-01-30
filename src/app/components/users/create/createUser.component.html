@@ -1,0 +1,44 @@
+<div>
+    <br>
+    <mat-card>
+      <section class="mat-typography">
+        <h3>Create A New User</h3>
+      </section>
+      <mat-divider></mat-divider>
+      <br>
+      <form [formGroup]="createForm" class="create-form">
+        <mat-form-field class="field-full-width">
+          <input matInput placeholder="User email" formControlName="email" #email>
+          <!--<mat-error *ngIf="createForm.controls['title'].errors.required">
+            Title is <strong>required</strong>
+          </mat-error>-->
+        </mat-form-field>
+        
+        <mat-form-field class="field-full-width">
+          <textarea matInput placeholder="Name" formControlName="name" #name></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="field-full-width">
+          <textarea matInput placeholder="First name" formControlName="firstName" #firstName></textarea>
+        </mat-form-field>
+
+        
+        <mat-form-field class="field-full-width">
+          <textarea matInput placeholder="Last name" formControlName="lastName" #lastName></textarea>
+        </mat-form-field>
+        
+        <!--<mat-form-field>
+          <mat-label>Tipo de ticket</mat-label>
+          <mat-select matNativeControl  formControlName="tipoTicket" #tipoTicket>
+            <mat-option *ngFor="let tipo of tipoTickets" [value]="tipo._id">
+              {{tipo.tipo}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>-->
+        <mat-divider></mat-divider>
+        <br><br>
+        <button mat-raised-button color="accent" routerLink="/users">Back</button>&nbsp;
+        <button type="submit" (click)="addUser(email.value, name.value, firstName.value, lastName.value)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary">Save</button>
+      </form>
+    </mat-card>
+  </div>

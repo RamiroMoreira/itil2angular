@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { WebsocketService} from './webSocket.service';
+import { AuthenticationService} from './authentication.service';
 import { MatToolbarModule, 
   MatFormFieldModule, 
   MatInputModule, 
@@ -27,12 +28,20 @@ import { MatToolbarModule,
   MatSnackBarModule } from '@angular/material';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfigService } from './config.service';
+import { CreateUserComponent } from './components/users/create/createUser.component';
+import { ListUserComponent} from './components/users/list/listUser.component';
+import { LoginComponent} from './components/users/login/login.component';
+import { UserService } from './user.service';
+import { AuthGuardService } from './auth-guard.service';
 
 const routes: Routes = [
-  { path: 'createTicket', component: CreateTicketComponent },
-  { path: 'editTicket/:id', component: EditTicketComponent },
-  { path: 'listTicket', component: ListTicketComponent },
-  { path: '', redirectTo: '/listTicket', pathMatch: 'full'}
+  { path: 'createTicket', component: CreateTicketComponent, canActivate: [AuthGuardService] },
+  { path: 'editTicket/:id', component: EditTicketComponent, canActivate: [AuthGuardService] },
+  { path: 'listTicket', component: ListTicketComponent, canActivate: [AuthGuardService] },
+  { path: '', redirectTo: '/listTicket', pathMatch: 'full', canActivate: [AuthGuardService]},
+  { path: 'users/add', component: CreateUserComponent, canActivate: [AuthGuardService]},
+  { path: 'users', component: ListUserComponent, canActivate: [AuthGuardService]},
+  { path: 'login', component: LoginComponent }
 ];
 
 
@@ -41,7 +50,10 @@ const routes: Routes = [
     AppComponent,
     ListTicketComponent,
     CreateTicketComponent,
-    EditTicketComponent
+    EditTicketComponent,
+    CreateUserComponent,
+    ListUserComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +78,7 @@ const routes: Routes = [
     NgbModule
     
    ],
-  providers: [TicketService, TipoTicketService, WebsocketService, ConfigService],
+  providers: [TicketService, AuthGuardService, TipoTicketService, WebsocketService, ConfigService, UserService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 

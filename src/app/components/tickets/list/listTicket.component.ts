@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Ticket } from '../../../ticket.model';
 import { MatTableDataSource } from '@angular/material';
 import { WebsocketService } from './../../../webSocket.service';
+import { AuthenticationService } from '../../../authentication.service';
+
 import * as _ from 'underscore';
 
 @Component({
@@ -20,6 +22,7 @@ export class ListTicketComponent implements OnInit {
   format: string;
   timezone: string;
   constructor(
+    private auth: AuthenticationService,
     private ticketService: TicketService, 
     private router: Router,
     private webSocketService: WebsocketService,
@@ -42,7 +45,6 @@ export class ListTicketComponent implements OnInit {
     this.ticketService.getTickets().subscribe(tickets => {
       this.tickets = tickets.json();
       this.collectionSize = this.tickets.length;
-      debugger;
     });
   }
 

@@ -3,7 +3,7 @@
 <div class="wrapper">
 
   <!-- Sidebar -->
-  <nav id="sidebar">
+  <nav *ngIf="getIsCollapsed" id="sidebar">
       <ul class="list-unstyled">
         <img src="assets/img/logo-itil.png" class="width100">  
         <li class="active">
@@ -17,7 +17,21 @@
                       <a routerLink="/createTicket">Add ticket</a>
                   </li>
               </ul>
+        </li>
+          <li class="active">
+            <a  class="dropdown-toggle" (click)="isCollapsedUser = !isCollapsedUser"
+            [attr.aria-expanded]="!isCollapsedUser" aria-controls="collapseExample2"> Users</a>
+            <ul id="collapseExample2" class="noPadding" [ngbCollapse]="isCollapsedUser">
+                <li>
+                    <a routerLink="/users/add">Add user</a>
+                </li>
+                <li>
+                  <a routerLink="/users">List</a>
+              </li>
+            </ul>
           </li>
+        
+
        </ul>
   </nav>
 

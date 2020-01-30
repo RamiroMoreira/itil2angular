@@ -32,7 +32,20 @@ export class WebsocketService {
     });
     return observable;
   }
-
+  newUser(data){
+    this.socket.emit('newUser', data);
+  }
+  newUserCreated() {
+    const observable = new Observable<{id: String, email: String, name: String, lastName: String, firstName:String}>(observer => {
+      this.socket.on('new user', (data) => {
+        observer.next(data);
+      });
+      return () => {
+        this.socket.disconnect();
+      };
+    });
+    return observable;
+  }
 //   typing(data) {
 //     this.socket.emit('typing', data);
 //   }

@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const Tickets = require('./models/Tickets');
 const TipoTicket = require('./models/TipoTicket');
 const path = require('path');
+const User = require('./models/User');
+const generator = require('generate-password');
 
 // import express from 'express';
 // import cors from 'cors';
@@ -47,6 +49,31 @@ io.sockets.on('connection', (socket) => {
         .catch(err => {
             console.log(err);
         });
+    });
+
+    socket.on('newUser', (data) => {
+        let user = new User(data);
+        var password = generator.generate({
+            length: 10,
+            numbers: true
+        });
+        console.log(password);
+        user.setPassword(password);
+        
+        user.save();
+
+        /*.then(tickets => {
+            Tickets.findOne({_id: tickets._id}).populate('tipoTicket').exec(function(err,res){
+                if (err)
+                    console.log(err);
+                else
+                    io.emit('new user', res);
+              });
+        })
+        .catch(err => {
+            console.log(err);
+        });*/
+
     });
 })
 

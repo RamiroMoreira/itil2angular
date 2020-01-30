@@ -3,7 +3,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { WebsocketService } from './webSocket.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpModule, Headers, Http } from '@angular/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import {ConfigService } from './config.service';
+import { AuthenticationService } from './authentication.service';
 
 
 @Injectable({
@@ -25,7 +27,16 @@ export class TicketService implements OnInit {
   }
   getTickets() {
     console.log("getting tickets");
-    return this.http.get(`${this.uri}/tickets`);
+    let payload;
+    let token = localStorage.getItem('mean-token')
+    let payloadJson;
+    if (token) {
+      payload = token.split('.')[1];
+      payload = window.atob(payload);
+      payloadJson = JSON.parse(payload);
+    }
+    return this.http.get(`${this.uri}/tickets`, {params:{payload:payloadJson}});
+    
   }
   getTicketById(id) {
     return this.http.get(`${this.uri}/tickets/${id}`);
