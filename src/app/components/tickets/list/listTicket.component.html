@@ -1,5 +1,5 @@
-<div>
-<table class="table table-striped">
+<div class="table-responsive">
+<table class="table table-striped" >
   <thead>
   <tr>
     <th scope="col">#</th>
@@ -11,13 +11,16 @@
   </thead>
   <tbody>
   <tr  *ngFor="let ticket of tickets2">
-    <td scope="row">{{ ticket._id }}</td>
-    <td>
+    <td scope="row"> {{ ticket._id }}</td>
+    <td class="w-25" style ="word-break: break-word">
       {{ ticket.title }}
     </td>
-    <td>{{ ticket.description}}</td>
-    <td>{{ ticket.fechaIngreso | date : format : timezone}}</td>
-    <td>{{ ticket.tipoTicket.tipo}}</td>
+    <td class="w-100" style ="word-break: break-word;  overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;padding:0px">{{ ticket.description}}</td>
+    <td style ="word-break: break-word">{{ ticket.fechaIngreso | date : format : timezone}}</td>
+    <td class="w-25" style ="word-break: break-word">{{ ticket.tipoTicket.tipo}}</td>
 
   </tr>
   </tbody>

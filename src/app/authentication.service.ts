@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { Router } from '@angular/router';
 import { ConfigService} from './config.service';
+import { AppComponent } from './app.component';
 
 export interface UserDetails {
     _id: string;
@@ -46,7 +47,9 @@ export class AuthenticationService {
   public logout(): void {
     this.token = '';
     window.localStorage.removeItem('mean-token');
-    this.router.navigateByUrl('/');
+    AppComponent.userIsLogged = false;
+    AppComponent.userIsLoggedChanged.emit(AppComponent.userIsLogged);
+    this.router.navigateByUrl('/login');
   }
 
   public getUserDetails(): UserDetails {

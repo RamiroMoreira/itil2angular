@@ -37,6 +37,13 @@
 
   <!-- Page Content -->
   <div class="content width100"  role="main">
+    <nav *ngIf="getIsCollapsed" class="navbar-light bg-secondary">
+        <ul class="nav-top-margin-0 text-right" style="height:100%">
+          <span class="margin-h-10 white-text">{{getUsuarioMail}}</span>
+          <button (click)="logout()" class="margin-h-10" mat-raised-button color="primary">sign out</button>
+        </ul>
+    </nav>
+
     <div>
       <router-outlet></router-outlet>
     </div>

@@ -42,7 +42,6 @@ export class ListUserComponent implements OnInit {
     this.userService.getUsers().subscribe(users => {
       this.users = users.json();
       this.collectionSize = this.users.length;
-      debugger;
     });
   }
 
@@ -54,17 +53,4 @@ export class ListUserComponent implements OnInit {
       return [];
     }
   }  
-    // fetchTickets() {
-  //   this.ticketService
-  //   .getTickets()
-  //   .subscribe((tickets: Ticket[]) => {
-  //     this.tickets = tickets;
-  //     console.log('Data requested ... ');
-  //     console.log(this.tickets);
-  //   });
-  // }
-
- 
-
-
 }

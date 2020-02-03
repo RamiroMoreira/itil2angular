@@ -1,6 +1,7 @@
 import { Component,Output, Input, EventEmitter} from '@angular/core';
 import { AuthenticationService } from './authentication.service';
 import { Observable, Subject } from  'rxjs/Rx';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +12,10 @@ export class AppComponent {
   public isCollapsed = false;
   public isCollapsedUser = false;
   title = 'frontend';
-   @Input() public static userIsLogged : boolean;
+  @Input() public static userIsLogged : boolean;
   @Output() public static userIsLoggedChanged = new EventEmitter<Object>();
-  constructor(
-    private auth: AuthenticationService){
+
+  constructor(private auth: AuthenticationService, private router: Router){
       
       AppComponent.userIsLogged = this.auth.isLoggedIn()
       AppComponent.userIsLoggedChanged.emit(AppComponent.userIsLogged);
@@ -23,5 +24,14 @@ export class AppComponent {
     }
     get getIsCollapsed() {
       return AppComponent.userIsLogged;
+    }
+    
+    get getUsuarioMail(){
+      return this.auth.getUserDetails().email;
+    }
+    
+    logout(){
+      debugger;
+      this.auth.logout();
     }
 }

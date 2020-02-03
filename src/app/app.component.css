@@ -114,3 +114,19 @@ ul ul a {
   .width100 {
       width:100%;
   }
+
+  .nav-top-margin-0{
+      margin-bottom: 0px;
+      margin-top: 0px;
+      padding-bottom: 10px;
+      padding-top: 10px;
+  }
+
+  .margin-h-10{
+      margin-right: 10px;
+      margin-left: 10px;
+  }
+
+  .white-text{
+      color: #fff;
+  }

@@ -23,7 +23,6 @@ export class UserService implements OnInit {
 
   }
   getUsers() {
-    console.log("getting users");
     return this.http.get(`${this.uri}/users`);
   }
 }
