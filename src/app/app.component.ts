@@ -31,7 +31,6 @@ export class AppComponent {
     }
     
     logout(){
-      debugger;
       this.auth.logout();
     }
 }

@@ -11,18 +11,25 @@ export class LoginComponent {
     email: '',
     password: ''
   };
+  public errorMessage = "";
+  get getErrorMessage(){
+    return this.errorMessage;
+  }
+
+  cleanMessage(event: any) { // without type info
+    this.errorMessage = "";
+  }
 
   constructor(private auth: AuthenticationService, private router: Router) {}
 
   login() {
     this.auth.login(this.credentials).subscribe(() => {
-      debugger;
       AppComponent.userIsLogged = true;
       AppComponent.userIsLoggedChanged.emit(AppComponent.userIsLogged);
       this.router.navigateByUrl('/listTicket');
       
     }, (err) => {
-      console.error(err);
+      this.errorMessage = "Wrong password or user.";
     });
   }
 }

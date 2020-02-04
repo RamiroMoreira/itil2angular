@@ -56,17 +56,4 @@ export class ListTicketComponent implements OnInit {
       return [];
     }
   }  
-    // fetchTickets() {
-  //   this.ticketService
-  //   .getTickets()
-  //   .subscribe((tickets: Ticket[]) => {
-  //     this.tickets = tickets;
-  //     console.log('Data requested ... ');
-  //     console.log(this.tickets);
-  //   });
-  // }
-
- 
-
-
 }

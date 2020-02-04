@@ -1,11 +1,16 @@
+<div style="width:800px;margin:auto;padding:20px;margin-top:10px" class="jumbotron">
 <form (submit)="login()">
     <div class="form-group">
       <label for="email">Email address</label>
-      <input type="email" class="form-control" name="email" placeholder="Enter email" [(ngModel)]="credentials.email">
+      <input (keyup)="cleanMessage($event)" type="email" class="form-control" name="email" placeholder="Enter email" [(ngModel)]="credentials.email">
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="credentials.password">
+      <input  (keyup)="cleanMessage($event)" type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="credentials.password">
     </div>
-    <button type="submit" class="btn btn-default">Sign in!</button>
+    <button type="submit" mat-raised-button color="primary" class="btn btn-default">Sign in!</button>
+    <div class="alert alert-danger" style="margin-top:10px" *ngIf="getErrorMessage" role="alert">
+      {{getErrorMessage}}
+    </div>
 </form>
+</div>
